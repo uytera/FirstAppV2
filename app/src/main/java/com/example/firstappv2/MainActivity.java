@@ -2,6 +2,7 @@ package com.example.firstappv2;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.graphics.Color;
@@ -13,7 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AbyssiDialog.NoticeDialogListener{
     TextView topText;
     Button middleButton;
     Button deepButton;
@@ -47,14 +48,23 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AbyssiDialog diag = new AbyssiDialog();
                 diag.show(getSupportFragmentManager(), "NoticeMeUwU");
-                topText.setText("tenebris profundis");
-                topText.setTextColor(Color.parseColor("#000000"));
-                middleButton.setVisibility(View.VISIBLE);
-                deepButton.setVisibility(View.INVISIBLE);
-                view.setBackgroundResource(R.drawable.gradient_deep);
-                hideSystemUI();
             }
         });
+    }
+
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        topText.setText("tenebris profundis");
+        topText.setTextColor(Color.parseColor("#000000"));
+        middleButton.setVisibility(View.VISIBLE);
+        deepButton.setVisibility(View.INVISIBLE);
+        view.setBackgroundResource(R.drawable.gradient_deep);
+        hideSystemUI();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
     }
 
     @Override
