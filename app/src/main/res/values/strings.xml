@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FirstAppV2</string>
+    <string name="file">primus</string>
+    <string name="create_new">secundo internum</string>
+    <string name="open">tertio interno</string>
+    <string name="dialog_fire_missiles">Intellige, te ire in abyssum?</string>
+    <string name="Yes">Sic</string>
+    <string name="No">Non</string>
 </resources>

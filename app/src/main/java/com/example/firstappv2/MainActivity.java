@@ -2,15 +2,19 @@ package com.example.firstappv2;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AbyssiDialog.NoticeDialogListener{
     TextView topText;
     Button middleButton;
     Button deepButton;
@@ -21,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        hideSystemUI();
 
         view = (ConstraintLayout) findViewById(R.id.currentAct);
         topText = (TextView) findViewById(R.id.topText);
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         middleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideSystemUI();
+                showSystemUI();
                 topText.setText("aurea mediocritas");
                 topText.setTextColor(Color.parseColor("#EFB135"));
                 middleButton.setVisibility(View.INVISIBLE);
@@ -43,14 +46,32 @@ public class MainActivity extends AppCompatActivity {
         deepButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideSystemUI();
-                topText.setText("tenebris profundis");
-                topText.setTextColor(Color.parseColor("#000000"));
-                middleButton.setVisibility(View.VISIBLE);
-                deepButton.setVisibility(View.INVISIBLE);
-                view.setBackgroundResource(R.drawable.gradient_deep);
+                AbyssiDialog diag = new AbyssiDialog();
+                diag.show(getSupportFragmentManager(), "NoticeMeUwU");
             }
         });
+    }
+
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        topText.setText("tenebris profundis");
+        topText.setTextColor(Color.parseColor("#000000"));
+        middleButton.setVisibility(View.VISIBLE);
+        deepButton.setVisibility(View.INVISIBLE);
+        view.setBackgroundResource(R.drawable.gradient_deep);
+        hideSystemUI();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.sample , menu);
+        return true;
     }
 
     private void hideSystemUI() {
