@@ -33,7 +33,7 @@ public class TenebrisActivity extends AppCompatActivity {
         });
     }
 
-    public void Change(){
+    public void Change() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements AbyssiDialog.NoticeDialogListener{
+public class MainActivity extends AppCompatActivity implements AbyssiDialog.NoticeDialogListener {
     TextView topText;
     Button middleButton;
     Button deepButton;
@@ -45,23 +45,11 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
         caputButton = findViewById(R.id.caputButton);
         caputEditText = findViewById(R.id.nomineCaput);
 
-        if(sharedPreferences.contains(textCaput)) {
+        if (sharedPreferences.contains(textCaput)) {
             setTitle(sharedPreferences.getString(textCaput, ""));
-        }
-        else{
+        } else {
             setTitle("sine nomine");
         }
-        /*middleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSystemUI();
-                topText.setText("aurea mediocritas");
-                topText.setTextColor(Color.parseColor("#EFB135"));
-                middleButton.setVisibility(View.INVISIBLE);
-                deepButton.setVisibility(View.VISIBLE);
-                view.setBackgroundResource(R.drawable.gradient_middle);
-            }
-        });*/
 
         deepButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.sample , menu);
+        inflater.inflate(R.menu.sample, menu);
         return true;
     }
 
