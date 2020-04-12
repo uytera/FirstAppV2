@@ -8,6 +8,11 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +21,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements AbyssiDialog.NoticeDialogListener {
     TextView topText;
@@ -26,11 +34,26 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
     EditText editText;
     EditText caputEditText;
     SharedPreferences sharedPreferences;
+    SensorManager sm;
+    Sensor sensorLight;
 
 
     public static String textF = "nomen";
     public static String textCaput = "caput";
 
+
+    SensorEventListener sensorEventListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            int currValue = (int) sensorEvent.values[0];
+            deepButton.getBackground().setAlpha(255 - (Math.min((currValue * 10), 255)));
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +67,12 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
         deepButton = findViewById(R.id.deepButton);
         caputButton = findViewById(R.id.caputButton);
         caputEditText = findViewById(R.id.nomineCaput);
+
+        sm = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorLight = sm.getDefaultSensor(Sensor.TYPE_LIGHT);
+        sm.registerListener(sensorEventListener,
+                sensorLight,
+                SensorManager.SENSOR_DELAY_NORMAL);
 
         if (sharedPreferences.contains(textCaput)) {
             setTitle(sharedPreferences.getString(textCaput, ""));
@@ -68,6 +97,10 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
                 setTitle(caputEditText.getText());
             }
         });
+    }
+
+    public void sensorLight(View view) {
+
     }
 
 

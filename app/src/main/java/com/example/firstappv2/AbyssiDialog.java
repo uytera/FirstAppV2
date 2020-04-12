@@ -31,13 +31,13 @@ public class AbyssiDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(R.string.dialog_fire_missiles)
-                .setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
+        builder.setMessage(R.string.rus_dialog_fire_missiles)
+                .setPositiveButton(R.string.rus_Yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         mListener.onDialogPositiveClick(AbyssiDialog.this);
                     }
                 })
-                .setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.rus_No, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         mListener.onDialogNegativeClick(AbyssiDialog.this);
                     }
