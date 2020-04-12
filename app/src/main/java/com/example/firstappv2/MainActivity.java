@@ -5,43 +5,51 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements AbyssiDialog.NoticeDialogListener{
+public class MainActivity extends AppCompatActivity implements AbyssiDialog.NoticeDialogListener {
     TextView topText;
     Button middleButton;
     Button deepButton;
+    Button caputButton;
     ConstraintLayout view;
+    EditText editText;
+    EditText caputEditText;
+    SharedPreferences sharedPreferences;
+
+
+    public static String textF = "nomen";
+    public static String textCaput = "caput";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sharedPreferences = getPreferences(MODE_PRIVATE);
 
-        view = (ConstraintLayout) findViewById(R.id.currentAct);
-        topText = (TextView) findViewById(R.id.topText);
-        middleButton = (Button) findViewById(R.id.middleButton);
-        deepButton = (Button) findViewById(R.id.deepButton);
+        view = findViewById(R.id.currentAct);
+        topText = findViewById(R.id.topText);
+        editText = findViewById(R.id.nomen);
+        deepButton = findViewById(R.id.deepButton);
+        caputButton = findViewById(R.id.caputButton);
+        caputEditText = findViewById(R.id.nomineCaput);
 
-        middleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSystemUI();
-                topText.setText("aurea mediocritas");
-                topText.setTextColor(Color.parseColor("#EFB135"));
-                middleButton.setVisibility(View.INVISIBLE);
-                deepButton.setVisibility(View.VISIBLE);
-                view.setBackgroundResource(R.drawable.gradient_middle);
-            }
-        });
+        if (sharedPreferences.contains(textCaput)) {
+            setTitle(sharedPreferences.getString(textCaput, ""));
+        } else {
+            setTitle("sine nomine");
+        }
 
         deepButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,17 +58,24 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
                 diag.show(getSupportFragmentManager(), "NoticeMeUwU");
             }
         });
+
+        caputButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(textCaput, String.valueOf(caputEditText.getText()));
+                editor.apply();
+                setTitle(caputEditText.getText());
+            }
+        });
     }
 
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        topText.setText("tenebris profundis");
-        topText.setTextColor(Color.parseColor("#000000"));
-        middleButton.setVisibility(View.VISIBLE);
-        deepButton.setVisibility(View.INVISIBLE);
-        view.setBackgroundResource(R.drawable.gradient_deep);
-        hideSystemUI();
+        Intent intent = new Intent(this, TenebrisActivity.class);
+        intent.putExtra(textF, editText.getText().toString());
+        startActivity(intent);
     }
 
     @Override
@@ -70,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.sample , menu);
+        inflater.inflate(R.menu.sample, menu);
         return true;
     }
 

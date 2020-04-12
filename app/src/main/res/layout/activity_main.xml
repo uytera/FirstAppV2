@@ -25,31 +25,15 @@
             android:layout_marginStart="41dp"
             android:layout_marginTop="113dp"
             android:layout_marginEnd="42dp"
-            android:layout_marginBottom="234dp"
-            android:text="aurea mediocritas"
+            android:text="@string/aurea_mediocritas_resource"
             android:textAlignment="center"
             android:textColor="#EFB135"
             android:textColorLink="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/middleButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-
-            android:id="@+id/middleButton"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginEnd="13dp"
-            android:layout_marginBottom="200dp"
-            android:background="@drawable/light_button"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/deepButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/deepButton"
@@ -63,6 +47,43 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/nomen"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginStart="99dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="99dp"
+            android:ems="10"
+            android:hint="@string/nomen_quaesitor_resource"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topText" />
+
+        <EditText
+            android:id="@+id/nomineCaput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="35dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/nomine_resource"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/caputButton"
+            android:background="@drawable/very_light_button"
+            android:layout_width="118dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,4 +6,9 @@
     <string name="dialog_fire_missiles">Intellige, te ire in abyssum?</string>
     <string name="Yes">Sic</string>
     <string name="No">Non</string>
+    <string name="aurea_mediocritas_resource">aurea mediocritas</string>
+    <string name="nomen_quaesitor_resource">nomen quaesitor...</string>
+    <string name="nomine_resource">nomine</string>
+    <string name="tenebris_profundis_nomine_resource">tenebris profundis</string>
+    <string name="tenebris_nomen_quaesitor_resource">nomen quaesitor</string>
 </resources>
