@@ -1,4 +1,5 @@
 <resources>
+//Latin
     <string name="app_name">FirstAppV2</string>
     <string name="file">primus</string>
     <string name="create_new">secundo internum</string>
@@ -11,4 +12,16 @@
     <string name="nomine_resource">nomine</string>
     <string name="tenebris_profundis_nomine_resource">tenebris profundis</string>
     <string name="tenebris_nomen_quaesitor_resource">nomen quaesitor</string>
+//Rus
+    <string name="rus_file">первый</string>
+    <string name="rus_create_new">второй внутренний</string>
+    <string name="rus_open">третий внутренний</string>
+    <string name="rus_dialog_fire_missiles">Вы намеренны спуститься в бездну?</string>
+    <string name="rus_Yes">Да</string>
+    <string name="rus_No">Нет</string>
+    <string name="rus_aurea_mediocritas_resource">золотая середина</string>
+    <string name="rus_nomen_quaesitor_resource">имя исследователя...</string>
+    <string name="rus_nomine_resource">имя окружения</string>
+    <string name="rus_tenebris_profundis_nomine_resource">тёмная бездна</string>
+    <string name="rus_tenebris_nomen_quaesitor_resource">имя исследователя</string>
 </resources>

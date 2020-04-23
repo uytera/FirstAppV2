@@ -1,6 +1,10 @@
 package com.example.firstappv2;
 
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +15,21 @@ import androidx.appcompat.app.AppCompatActivity;
 public class TenebrisActivity extends AppCompatActivity {
     TextView nomenQuaesitor;
     Button middleButton;
+    SensorManager sm;
+    Sensor sensorLight;
+
+    SensorEventListener sensorEventListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            int currValue = (int) sensorEvent.values[0];
+            middleButton.getBackground().setAlpha(Math.min((currValue * 10), 255));
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +41,13 @@ public class TenebrisActivity extends AppCompatActivity {
 
         nomenQuaesitor = findViewById(R.id.nomenQuaesitor);
         nomenQuaesitor.setText(text);
-
         middleButton = findViewById(R.id.middleButton2);
+
+        sm = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorLight = sm.getDefaultSensor(Sensor.TYPE_LIGHT);
+        sm.registerListener(sensorEventListener,
+                sensorLight,
+                SensorManager.SENSOR_DELAY_NORMAL);
 
         middleButton.setOnClickListener(new View.OnClickListener() {
             @Override
