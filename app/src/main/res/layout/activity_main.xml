@@ -37,53 +37,118 @@
 
         <Button
             android:id="@+id/deepButton"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            style="@style/AppTheme"
+            android:layout_width="298dp"
+            android:layout_height="55dp"
             android:layout_marginStart="14dp"
             android:layout_marginEnd="13dp"
-            android:layout_marginBottom="120dp"
+            android:layout_marginBottom="280dp"
             android:background="@drawable/dark_button"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nomen"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginStart="99dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="99dp"
-            android:ems="10"
-            android:hint="@string/rus_nomen_quaesitor_resource"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topText" />
-
-        <EditText
-            android:id="@+id/nomineCaput"
-            android:layout_width="wrap_content"
+            style="@style/MyThemeOutLinedBox"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="56dp"
+            android:hint="@string/rus_login_hint"
+
+            android:textColorHint="@color/main_color_state"
+            app:boxStrokeColor="#EFB135"
+            app:counterTextColor="@color/main_color_state"
+            app:helperTextTextColor="@color/main_color_state"
+            app:hintTextColor="#EFB135"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password"
+            style="@style/MyThemeOutLinedBox"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="56dp"
+
+            android:hint="@string/rus_password_hint"
+            android:textColorHint="@color/main_color_state"
+            app:boxStrokeColor="#EFB135"
+            app:counterTextColor="@color/main_color_state"
+            app:helperTextTextColor="@color/main_color_state"
+
+            app:hintTextColor="#EFB135"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nomineCaput"
+            style="@style/MyThemeOutLinedBox"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
-            android:ems="10"
-            android:inputType="textPersonName"
+            android:layout_marginEnd="56dp"
             android:hint="@string/rus_nomine_resource"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/caputButton"
-            android:background="@drawable/very_light_button"
-            android:layout_width="118dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="44dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginEnd="7dp"
+            android:text="✔"
+            android:textAlignment="center"
+            android:textColor="@color/main_color_state"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/nomineCaput"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/main_color_state" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="87dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/nomen"
+            app:layout_constraintTop_toBottomOf="@+id/topText"
+            app:srcCompat="@drawable/ic_person_24px" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/password"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:srcCompat="@drawable/password_24px" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

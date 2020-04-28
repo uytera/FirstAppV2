@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
     Button deepButton;
     Button caputButton;
     ConstraintLayout view;
+    com.google.android.material.textfield.TextInputLayout editTextMaterial;
     EditText editText;
+    com.google.android.material.textfield.TextInputLayout caputEditTextMaterial;
     EditText caputEditText;
     SharedPreferences sharedPreferences;
     SensorManager sm;
@@ -63,10 +65,12 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
 
         view = findViewById(R.id.currentAct);
         topText = findViewById(R.id.topText);
-        editText = findViewById(R.id.nomen);
+        editTextMaterial = findViewById(R.id.nomen);
+        editText = editTextMaterial.getEditText();
         deepButton = findViewById(R.id.deepButton);
         caputButton = findViewById(R.id.caputButton);
-        caputEditText = findViewById(R.id.nomineCaput);
+        caputEditTextMaterial = findViewById(R.id.nomineCaput);
+        caputEditText = caputEditTextMaterial.getEditText();
 
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorLight = sm.getDefaultSensor(Sensor.TYPE_LIGHT);

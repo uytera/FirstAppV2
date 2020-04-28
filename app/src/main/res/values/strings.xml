@@ -24,4 +24,6 @@
     <string name="rus_nomine_resource">имя окружения</string>
     <string name="rus_tenebris_profundis_nomine_resource">тёмная бездна</string>
     <string name="rus_tenebris_nomen_quaesitor_resource">имя исследователя</string>
+    <string name="rus_password_hint">пароль</string>
+    <string name="rus_login_hint">логин</string>
 </resources>
