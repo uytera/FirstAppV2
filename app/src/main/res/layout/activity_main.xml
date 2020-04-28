@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:layout_marginEnd="56dp"
-            android:hint="@string/rus_login_hint"
+            android:hint="@string/city_rus"
 
             android:textColorHint="@color/main_color_state"
             app:boxStrokeColor="#EFB135"
