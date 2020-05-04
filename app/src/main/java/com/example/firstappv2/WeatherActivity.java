@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,12 +31,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 
-public class TenebrisActivity extends AppCompatActivity {
+public class WeatherActivity extends AppCompatActivity {
     static TextView city;
     static TextView temp;
     static TextView windSp;
     int REQUEST_CODE_PERMISSION_INTERNET = 0;
-    Button middleButton;
+    ImageButton middleButton;
     SensorManager sm;
     Sensor sensorLight;
 
