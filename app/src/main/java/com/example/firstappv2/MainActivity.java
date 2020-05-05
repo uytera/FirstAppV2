@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements CityDialog.NoticeDialogListener {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
     Button middleButton;
     Button deepButton;
     Button caputButton;
+    ImageButton listButton;
     ConstraintLayout view;
     com.google.android.material.textfield.TextInputLayout editTextMaterial;
     EditText editText;
@@ -55,12 +57,13 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sharedPreferences = getPreferences(MODE_PRIVATE);
-        hideSystemUI();
+        //hideSystemUI();
 
         view = findViewById(R.id.currentAct);
         topText = findViewById(R.id.topText);
         editTextMaterial = findViewById(R.id.nomen);
         editText = editTextMaterial.getEditText();
+        listButton = findViewById(R.id.listButton2);
         deepButton = findViewById(R.id.deepButton);
         caputButton = findViewById(R.id.caputButton);
         caputEditTextMaterial = findViewById(R.id.nomineCaput);
@@ -86,6 +89,13 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
             }
         });
 
+        listButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onWeatherListClick();
+            }
+        });
+
         caputButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,6 +109,11 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
 
     public void sensorLight(View view) {
 
+    }
+
+    public void onWeatherListClick() {
+        Intent intentWeather = new Intent(this, WeatherTempListActivity.class);
+        startActivity(intentWeather);
     }
 
 
