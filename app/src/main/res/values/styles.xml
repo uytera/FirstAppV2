@@ -10,20 +10,20 @@
     </style>
 
     <style name="MyTheme" parent="@style/Theme.MaterialComponents">
-        <item name="colorPrimary">#EFB135</item>
+        <item name="colorPrimary">#1E88E5</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
-        <item name="android:textColor">#EFB135</item>
-        <item name="boxStrokeColor">#EFB135</item>
-        <item name="hintTextColor">#EFB135</item>
+        <item name="android:textColor">#42A5F5</item>
+        <item name="boxStrokeColor">#42A5F5</item>
+        <item name="hintTextColor">#42A5F5</item>
         <item name="helperTextTextColor">@color/main_color_state</item>
         <item name="counterTextColor">@color/main_color_state</item>
         <item name="android:textColorHint">@color/main_color_state</item>
     </style>
 
     <style name="MyThemeOutLinedBox" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="android:textColor">#EFB135</item>
-        <item name="boxStrokeColor">#EFB135</item>
-        <item name="hintTextColor">#EFB135</item>
+        <item name="android:textColor">#42A5F5</item>
+        <item name="boxStrokeColor">#42A5F5</item>
+        <item name="hintTextColor">#42A5F5</item>
         <item name="helperTextTextColor">@color/main_color_state</item>
         <item name="counterTextColor">@color/main_color_state</item>
         <item name="android:textColorHint">@color/main_color_state</item>

@@ -3,29 +3,22 @@ package com.example.firstappv2;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.concurrent.TimeUnit;
-
-public class MainActivity extends AppCompatActivity implements AbyssiDialog.NoticeDialogListener {
+public class MainActivity extends AppCompatActivity implements CityDialog.NoticeDialogListener {
     TextView topText;
     Button middleButton;
     Button deepButton;
@@ -62,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sharedPreferences = getPreferences(MODE_PRIVATE);
+        hideSystemUI();
 
         view = findViewById(R.id.currentAct);
         topText = findViewById(R.id.topText);
@@ -72,12 +66,12 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
         caputEditTextMaterial = findViewById(R.id.nomineCaput);
         caputEditText = caputEditTextMaterial.getEditText();
 
-        sm = (SensorManager) getSystemService(SENSOR_SERVICE);
+        /*sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorLight = sm.getDefaultSensor(Sensor.TYPE_LIGHT);
         sm.registerListener(sensorEventListener,
                 sensorLight,
                 SensorManager.SENSOR_DELAY_NORMAL);
-
+        */
         if (sharedPreferences.contains(textCaput)) {
             setTitle(sharedPreferences.getString(textCaput, ""));
         } else {
@@ -87,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
         deepButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AbyssiDialog diag = new AbyssiDialog();
+                CityDialog diag = new CityDialog();
                 diag.show(getSupportFragmentManager(), "NoticeMeUwU");
             }
         });
@@ -110,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements AbyssiDialog.Noti
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        Intent intent = new Intent(this, TenebrisActivity.class);
+        Intent intent = new Intent(this, WeatherActivity.class);
         intent.putExtra(textF, editText.getText().toString());
         startActivity(intent);
     }

@@ -7,7 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 
-public class AbyssiDialog extends DialogFragment {
+public class CityDialog extends DialogFragment {
 
     public interface NoticeDialogListener {
         void onDialogPositiveClick(DialogFragment dialog);
@@ -34,12 +34,12 @@ public class AbyssiDialog extends DialogFragment {
         builder.setMessage(R.string.rus_dialog_fire_missiles)
                 .setPositiveButton(R.string.rus_Yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogPositiveClick(AbyssiDialog.this);
+                        mListener.onDialogPositiveClick(CityDialog.this);
                     }
                 })
                 .setNegativeButton(R.string.rus_No, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogNegativeClick(AbyssiDialog.this);
+                        mListener.onDialogNegativeClick(CityDialog.this);
                     }
                 });
         // Create the AlertDialog object and return it
