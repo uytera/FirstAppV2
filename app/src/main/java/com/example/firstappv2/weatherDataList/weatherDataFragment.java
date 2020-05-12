@@ -1,4 +1,4 @@
-package com.example.firstappv2;
+package com.example.firstappv2.weatherDataList;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,8 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.firstappv2.WeatherDataList.WeatherContent;
-import com.example.firstappv2.WeatherDataList.WeatherContent.WeatherDateItem;
+import com.example.firstappv2.R;
+import com.example.firstappv2.weatherDataList.WeatherContent.WeatherDateItem;
 
 /**
  * A fragment representing a list of Items.

@@ -1,4 +1,4 @@
-package com.example.firstappv2;
+package com.example.firstappv2.weatherDataList;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.firstappv2.WeatherDataList.WeatherContent;
-import com.example.firstappv2.weatherDataFragment.OnListFragmentInteractionListener;
-import com.example.firstappv2.WeatherDataList.WeatherContent.WeatherDateItem;
+import com.example.firstappv2.R;
+import com.example.firstappv2.weatherDataList.weatherDataFragment.OnListFragmentInteractionListener;
+import com.example.firstappv2.weatherDataList.WeatherContent.WeatherDateItem;
 
 import java.util.List;
 

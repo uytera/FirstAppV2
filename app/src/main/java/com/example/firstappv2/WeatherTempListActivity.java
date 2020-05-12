@@ -8,7 +8,9 @@ import android.widget.ImageButton;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.firstappv2.WeatherDataList.WeatherContent;
+
+import com.example.firstappv2.weatherDataList.MyweatherDataRecyclerViewAdapter;
+import com.example.firstappv2.weatherDataList.WeatherContent;
 
 public class WeatherTempListActivity extends FragmentActivity {
     ImageButton returnButton2;

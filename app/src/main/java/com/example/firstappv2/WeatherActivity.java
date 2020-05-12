@@ -3,35 +3,21 @@ package com.example.firstappv2;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
-
-import com.example.firstappv2.WeatherDataList.WeatherContent;
-
-import org.json.JSONException;
+import com.example.firstappv2.request.JsonRequest;
+import com.example.firstappv2.weatherDataList.WeatherContent;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.Date;
 
 public class WeatherActivity extends AppCompatActivity {
@@ -43,22 +29,22 @@ public class WeatherActivity extends AppCompatActivity {
 
     ImageButton returnButton;
     ImageButton listButton;
-    SensorManager sm;
-    Sensor sensorLight;
-    /*
-    SensorEventListener sensorEventListener = new SensorEventListener() {
-        @Override
-        public void onSensorChanged(SensorEvent sensorEvent) {
-            int currValue = (int) sensorEvent.values[0];
-            returnButton.getBackground().setAlpha(Math.min((currValue * 10), 255));
-        }
 
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    private static final int NOTIFY_ID = 101;
+    private static String CHANNEL_ID = "Weather channel";
 
-        }
-    };
-    */
+    private void notifyMethod(String city, String NotText){
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(WeatherActivity.this, CHANNEL_ID)
+                        .setSmallIcon(R.drawable.ic_wb_sunny_24px)
+                        .setContentTitle("Погода в " + city)
+                        .setContentText(NotText)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManager =
+                NotificationManagerCompat.from(WeatherActivity.this);
+        notificationManager.notify(NOTIFY_ID, builder.build());
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -77,7 +63,6 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tenebris_layout);
-        hideSystemUI();
         Intent intent = getIntent();
 
         city = findViewById(R.id.city);
@@ -85,12 +70,25 @@ public class WeatherActivity extends AppCompatActivity {
         windSp = findViewById(R.id.windSp);
 
 
+        returnButton = findViewById(R.id.returnButton);
+        listButton = findViewById(R.id.listButton);
+
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Return();
+            }
+        });
+        listButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onWeatherListClick();
+            }
+        });
 
         JSONObject json = null;
         String cityName = intent.getStringExtra("nomen");
         String apiKey = "18d82c5a0c9f97611a9864ef7b3c2d34";
-        System.out.println("http://api.openweathermap.org/data/2.5/weather?q=" + cityName +"&appid=" + apiKey);
-
         city.setText(cityName);
 
         int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET);
@@ -102,64 +100,7 @@ public class WeatherActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.INTERNET}, REQUEST_CODE_PERMISSION_INTERNET);
             AsyncRequest task = new AsyncRequest();
             task.execute(cityName, apiKey);
-
         }
-
-
-
-
-        returnButton = findViewById(R.id.returnButton);
-        listButton = findViewById(R.id.listButton);
-        /*
-        sm = (SensorManager) getSystemService(SENSOR_SERVICE);
-        sensorLight = sm.getDefaultSensor(Sensor.TYPE_LIGHT);
-        sm.registerListener(sensorEventListener,
-                sensorLight,
-                SensorManager.SENSOR_DELAY_NORMAL);*/
-
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Return();
-            }
-        });
-
-        listButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onWeatherListClick();
-            }
-        });
-    }
-
-    protected void Request(String  cityName, String apiKey){
-
-    }
-
-    protected static String readAll(Reader bufferedReader) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder();
-        int curretChar;
-        while ((curretChar = bufferedReader.read()) != -1) {
-            stringBuilder.append((char) curretChar);
-        }
-        return stringBuilder.toString();
-    }
-
-    protected static JSONObject readJsonFromUrl(String url) {
-        JSONObject json = null;
-
-        try(InputStream inputStream = new URL(url).openStream()) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
-            String jsonText = readAll(bufferedReader);
-            json = new JSONObject(jsonText);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return json;
     }
 
     public void Return() {
@@ -171,6 +112,31 @@ public class WeatherActivity extends AppCompatActivity {
         Intent intentWeather = new Intent(this, WeatherTempListActivity.class);
         startActivity(intentWeather);
     }
+
+    class AsyncRequest extends AsyncTask<String, Void, JSONObject> {
+
+        @Override
+        protected JSONObject doInBackground(String... arg) {
+            return JsonRequest.readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q=" + arg[0] +"&appid=" + arg[1] + "&units=metric");
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject json) {
+            try {
+                float tempF  = (float) json.getJSONObject("main").getDouble("temp");
+                float windF = (float) json.getJSONObject("wind").getInt("speed");
+                WeatherContent.addItem(new WeatherContent.WeatherDateItem(new Date().toString(), city.getText().toString(), tempF, windF));
+                temp.setText("Температура: " + tempF);
+                windSp.setText("Скорость ветра: " +  windF);
+                String notifyString = "Температура: " + tempF + "Скорость ветра: " +  windF;
+                notifyMethod(city.getText().toString() ,notifyString);
+
+            }catch (Exception e) {
+                temp.setText("Неверный город");
+            }
+        }
+    }
+
 
     private void hideSystemUI() {
         View mDecorView = getWindow().getDecorView();
@@ -188,27 +154,5 @@ public class WeatherActivity extends AppCompatActivity {
         mDecorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }
-
-    static class AsyncRequest extends AsyncTask<String, Void, JSONObject> {
-
-        @Override
-        protected JSONObject doInBackground(String... arg) {
-            return readJsonFromUrl("http://api.openweathermap.org/data/2.5/weather?q=" + arg[0] +"&appid=" + arg[1] + "&units=metric");
-        }
-
-        @Override
-        protected void onPostExecute(JSONObject json) {
-            try {
-                float tempF  = (float) json.getJSONObject("main").getDouble("temp");
-                float windF = (float) json.getJSONObject("wind").getInt("speed");
-                WeatherContent.addItem(new WeatherContent.WeatherDateItem(new Date().toString(), city.getText().toString(), tempF, windF));
-                temp.setText("Температура: " + tempF);
-                windSp.setText("Скорость ветра: " +  windF);
-
-            }catch (Exception e) {
-                temp.setText("Неверный город");
-            }
-        }
     }
 }

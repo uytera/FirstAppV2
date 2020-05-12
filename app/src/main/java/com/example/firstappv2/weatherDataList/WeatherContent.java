@@ -1,4 +1,4 @@
-package com.example.firstappv2.WeatherDataList;
+package com.example.firstappv2.weatherDataList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
