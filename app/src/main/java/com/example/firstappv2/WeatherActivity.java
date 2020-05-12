@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.firstappv2.WeatherDataList.WeatherContent;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,21 +32,25 @@ import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.Date;
 
 public class WeatherActivity extends AppCompatActivity {
+
     static TextView city;
     static TextView temp;
     static TextView windSp;
     int REQUEST_CODE_PERMISSION_INTERNET = 0;
-    ImageButton middleButton;
+
+    ImageButton returnButton;
+    ImageButton listButton;
     SensorManager sm;
     Sensor sensorLight;
-
+    /*
     SensorEventListener sensorEventListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
             int currValue = (int) sensorEvent.values[0];
-            middleButton.getBackground().setAlpha(Math.min((currValue * 10), 255));
+            returnButton.getBackground().setAlpha(Math.min((currValue * 10), 255));
         }
 
         @Override
@@ -52,6 +58,7 @@ public class WeatherActivity extends AppCompatActivity {
 
         }
     };
+    */
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -95,24 +102,32 @@ public class WeatherActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.INTERNET}, REQUEST_CODE_PERMISSION_INTERNET);
             AsyncRequest task = new AsyncRequest();
             task.execute(cityName, apiKey);
+
         }
 
 
 
 
-        middleButton = findViewById(R.id.middleButton2);
-
-
+        returnButton = findViewById(R.id.returnButton);
+        listButton = findViewById(R.id.listButton);
+        /*
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorLight = sm.getDefaultSensor(Sensor.TYPE_LIGHT);
         sm.registerListener(sensorEventListener,
                 sensorLight,
-                SensorManager.SENSOR_DELAY_NORMAL);
+                SensorManager.SENSOR_DELAY_NORMAL);*/
 
-        middleButton.setOnClickListener(new View.OnClickListener() {
+        returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Change();
+                Return();
+            }
+        });
+
+        listButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onWeatherListClick();
             }
         });
     }
@@ -147,9 +162,14 @@ public class WeatherActivity extends AppCompatActivity {
         return json;
     }
 
-    public void Change() {
+    public void Return() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void onWeatherListClick() {
+        Intent intentWeather = new Intent(this, WeatherTempListActivity.class);
+        startActivity(intentWeather);
     }
 
     private void hideSystemUI() {
@@ -182,6 +202,7 @@ public class WeatherActivity extends AppCompatActivity {
             try {
                 float tempF  = (float) json.getJSONObject("main").getDouble("temp");
                 float windF = (float) json.getJSONObject("wind").getInt("speed");
+                WeatherContent.addItem(new WeatherContent.WeatherDateItem(new Date().toString(), city.getText().toString(), tempF, windF));
                 temp.setText("Температура: " + tempF);
                 windSp.setText("Скорость ветра: " +  windF);
 
