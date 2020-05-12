@@ -1,4 +1,4 @@
-package com.example.firstappv2;
+package com.example.firstappv2.dialogs;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -6,6 +6,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
+
+import com.example.firstappv2.R;
 
 public class CityDialog extends DialogFragment {
 

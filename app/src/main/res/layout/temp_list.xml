@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/weather_fragment"
-        android:name="com.example.firstappv2.weatherDataFragment"
+        android:name="com.example.firstappv2.weatherDataList.weatherDataFragment"
         android:layout_width="360dp"
         android:layout_height="520dp"
         android:layout_marginStart="24dp"

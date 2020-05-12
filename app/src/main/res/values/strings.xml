@@ -28,6 +28,6 @@
     <string name="rus_login_hint">логин</string>
     <string name="temperature_rus">Температура: </string>
     <string name="speed_wind_rus">Скорость ветра: </string>
-    <string name="city_rus">город на английском</string>
+    <string name="city_rus">Название города</string>
     <string name="app_header">WeatherApp</string>
 </resources>

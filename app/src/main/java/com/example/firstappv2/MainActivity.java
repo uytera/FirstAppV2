@@ -19,9 +19,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.firstappv2.dialogs.CityDialog;
+
 public class MainActivity extends AppCompatActivity implements CityDialog.NoticeDialogListener {
     TextView topText;
-    Button middleButton;
     Button deepButton;
     Button caputButton;
     ImageButton listButton;
@@ -31,33 +32,17 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
     com.google.android.material.textfield.TextInputLayout caputEditTextMaterial;
     EditText caputEditText;
     SharedPreferences sharedPreferences;
-    SensorManager sm;
-    Sensor sensorLight;
 
 
     public static String textF = "nomen";
     public static String textCaput = "caput";
 
 
-    SensorEventListener sensorEventListener = new SensorEventListener() {
-        @Override
-        public void onSensorChanged(SensorEvent sensorEvent) {
-            int currValue = (int) sensorEvent.values[0];
-            deepButton.getBackground().setAlpha(255 - (Math.min((currValue * 10), 255)));
-        }
-
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sharedPreferences = getPreferences(MODE_PRIVATE);
-        //hideSystemUI();
 
         view = findViewById(R.id.currentAct);
         topText = findViewById(R.id.topText);
@@ -69,12 +54,6 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
         caputEditTextMaterial = findViewById(R.id.nomineCaput);
         caputEditText = caputEditTextMaterial.getEditText();
 
-        /*sm = (SensorManager) getSystemService(SENSOR_SERVICE);
-        sensorLight = sm.getDefaultSensor(Sensor.TYPE_LIGHT);
-        sm.registerListener(sensorEventListener,
-                sensorLight,
-                SensorManager.SENSOR_DELAY_NORMAL);
-        */
         if (sharedPreferences.contains(textCaput)) {
             setTitle(sharedPreferences.getString(textCaput, ""));
         } else {
@@ -105,10 +84,6 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
                 setTitle(caputEditText.getText());
             }
         });
-    }
-
-    public void sensorLight(View view) {
-
     }
 
     public void onWeatherListClick() {
