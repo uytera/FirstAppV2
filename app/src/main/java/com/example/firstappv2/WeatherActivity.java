@@ -1,6 +1,8 @@
 package com.example.firstappv2;
 
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -34,15 +36,18 @@ public class WeatherActivity extends AppCompatActivity {
     private static String CHANNEL_ID = "Weather channel";
 
     private void notifyMethod(String city, String NotText){
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(WeatherActivity.this);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_HIGH);
+            notificationManager.createNotificationChannel(channel);
+        }
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(WeatherActivity.this, CHANNEL_ID)
                         .setSmallIcon(R.drawable.ic_wb_sunny_24px)
                         .setContentTitle("Погода в " + city)
                         .setContentText(NotText)
+                        .setChannelId(CHANNEL_ID)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-        NotificationManagerCompat notificationManager =
-                NotificationManagerCompat.from(WeatherActivity.this);
         notificationManager.notify(NOTIFY_ID, builder.build());
     }
 
