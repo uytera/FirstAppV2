@@ -18,6 +18,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import com.example.firstappv2.request.JsonRequest;
+import com.example.firstappv2.view.MainActivity;
 import com.example.firstappv2.weatherDataList.WeatherContent;
 import org.json.JSONObject;
 import java.util.Date;

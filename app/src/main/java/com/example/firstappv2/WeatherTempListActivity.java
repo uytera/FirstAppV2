@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.firstappv2.view.MainActivity;
 import com.example.firstappv2.weatherDataList.MyweatherDataRecyclerViewAdapter;
 import com.example.firstappv2.weatherDataList.WeatherContent;
 

@@ -1,4 +1,4 @@
-package com.example.firstappv2;
+package com.example.firstappv2.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,12 +19,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.firstappv2.R;
+import com.example.firstappv2.WeatherActivity;
+import com.example.firstappv2.WeatherTempListActivity;
 import com.example.firstappv2.dialogs.CityDialog;
+import com.example.firstappv2.presentor.MainPresentor;
 
 public class MainActivity extends AppCompatActivity implements CityDialog.NoticeDialogListener {
     TextView topText;
     Button deepButton;
-    Button caputButton;
+    //Button caputButton;
     ImageButton listButton;
     ConstraintLayout view;
     com.google.android.material.textfield.TextInputLayout editTextMaterial;
@@ -33,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
     EditText caputEditText;
     SharedPreferences sharedPreferences;
 
-
+    private static MainPresentor mainPresentor;
     public static String textF = "nomen";
     public static String textCaput = "caput";
 
@@ -44,13 +48,14 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
         setContentView(R.layout.activity_main);
         sharedPreferences = getPreferences(MODE_PRIVATE);
 
+        mainPresentor = new MainPresentor(this);
         view = findViewById(R.id.currentAct);
         topText = findViewById(R.id.topText);
         editTextMaterial = findViewById(R.id.nomen);
         editText = editTextMaterial.getEditText();
         listButton = findViewById(R.id.listButton2);
         deepButton = findViewById(R.id.deepButton);
-        caputButton = findViewById(R.id.caputButton);
+        //caputButton = findViewById(R.id.caputButton);
         caputEditTextMaterial = findViewById(R.id.nomineCaput);
         caputEditText = caputEditTextMaterial.getEditText();
 
@@ -63,8 +68,7 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
         deepButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CityDialog diag = new CityDialog();
-                diag.show(getSupportFragmentManager(), "NoticeMeUwU");
+                mainPresentor.deepButtonClick(getSupportFragmentManager());
             }
         });
 
@@ -75,28 +79,27 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
             }
         });
 
-        caputButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(textCaput, String.valueOf(caputEditText.getText()));
-                editor.apply();
-                setTitle(caputEditText.getText());
-            }
-        });
+//        caputButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putString(textCaput, String.valueOf(caputEditText.getText()));
+//                editor.apply();
+//                setTitle(caputEditText.getText());
+//            }
+//        });
     }
 
     public void onWeatherListClick() {
-        Intent intentWeather = new Intent(this, WeatherTempListActivity.class);
-        startActivity(intentWeather);
+        Intent intent = new Intent(this, WeatherTempListActivity.class);
+        mainPresentor.startIntendActivity(intent);
     }
-
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         Intent intent = new Intent(this, WeatherActivity.class);
-        intent.putExtra(textF, editText.getText().toString());
-        startActivity(intent);
+        mainPresentor.putIntendValue(textF, editText.getText().toString(), intent);
+        mainPresentor.startIntendActivity(intent);
     }
 
     @Override
@@ -111,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
     }
 
     private void hideSystemUI() {
-        View mDecorView = getWindow().getDecorView();
+        View mDecorView = this.getWindow().getDecorView();
         mDecorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -122,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements CityDialog.Notice
     }
 
     private void showSystemUI() {
-        View mDecorView = getWindow().getDecorView();
+        View mDecorView = this.getWindow().getDecorView();
         mDecorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
