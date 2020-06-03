@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:visibility="visible"
     android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/currentAct"
@@ -91,21 +91,21 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/caputButton"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="44dp"
-            android:layout_height="51dp"
-            android:layout_marginTop="43dp"
-            android:layout_marginEnd="7dp"
-            android:text="✔"
-            android:textAlignment="center"
-            android:textColor="@color/main_color_state"
-            android:textSize="20sp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@+id/nomineCaput"
-            app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/main_color_state" />
+<!--        <Button-->
+<!--            android:id="@+id/caputButton"-->
+<!--            style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--            android:layout_width="44dp"-->
+<!--            android:layout_height="51dp"-->
+<!--            android:layout_marginTop="43dp"-->
+<!--            android:layout_marginEnd="7dp"-->
+<!--            android:text="✔"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/main_color_state"-->
+<!--            android:textSize="20sp"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/nomineCaput"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:strokeColor="@color/main_color_state" />-->
 
         <ImageView
             android:id="@+id/imageView"
