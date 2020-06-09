@@ -73,25 +73,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nomineCaput"
-            style="@style/MyThemeOutLinedBox"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="56dp"
-            android:hint="@string/rus_nomine_resource"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-<!--        <Button-->
+        <!--        <Button-->
 <!--            android:id="@+id/caputButton"-->
 <!--            style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
 <!--            android:layout_width="44dp"-->
@@ -118,19 +100,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topText"
             app:srcCompat="@drawable/ic_location_city_24px" />
-
-        <ImageButton
-            android:id="@+id/listButton2"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="27dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_list_24px" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

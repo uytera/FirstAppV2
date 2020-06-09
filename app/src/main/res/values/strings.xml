@@ -30,4 +30,9 @@
     <string name="speed_wind_rus">Скорость ветра: </string>
     <string name="city_rus">Название города</string>
     <string name="app_header">WeatherApp</string>
+    <string name="nav_header_rus">Навигационный заголовок</string>
+    <string name="nav_header_title_rus">Android studio</string>
+    <string name="nav_header_subtitle">subtitle</string>
+    <string name="nav_main_page">Главная страница</string>
+    <string name="nav_weather_list">История погоды</string>
 </resources>

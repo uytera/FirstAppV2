@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.firstappv2.fragments.main.MainFragment"
+        android:label="@string/nav_main_page"
+        tools:layout="@layout/activity_main">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_list"
+        android:name="com.example.firstappv2.fragments.list.ListFragment"
+        android:label="@string/nav_weather_list"
+        tools:layout="@layout/temp_list">
+        <action
+            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
+            app:destination="@id/nav_home" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="com.example.firstappv2.fragments.weather.WeatherFragment"
+        android:label="WeatherFragment"
+        tools:layout="@layout/tenebris_layout"/>
+</navigation>
