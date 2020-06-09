@@ -6,25 +6,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/morning">
 
-    <ImageButton
-        android:id="@+id/returnButton2"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="32dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_back_24px" />
-
     <fragment
         android:id="@+id/weather_fragment"
         android:name="com.example.firstappv2.weatherDataList.weatherDataFragment"
         android:layout_width="360dp"
         android:layout_height="520dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="93dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/returnButton2" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
