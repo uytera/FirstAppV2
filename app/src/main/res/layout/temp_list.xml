@@ -11,8 +11,8 @@
         android:name="com.example.firstappv2.weatherDataList.weatherDataFragment"
         android:layout_width="360dp"
         android:layout_height="520dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="93dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
