@@ -3,6 +3,7 @@ package com.example.firstappv2;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
@@ -15,8 +16,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -31,11 +35,32 @@ import static junit.framework.TestCase.assertEquals;
 public class ExampleInstrumentedTest {
     @Rule
     public ActivityTestRule<NavMainActivity> activityActivityTestRule = new ActivityTestRule<>(NavMainActivity.class);
-//    @Rule
-//    public FragmentTestRule<?, MainFragment> fragmentTestRule = FragmentTestRule.create(MainFragment.class);
 
     @Test
-    public void useAppContext() {
+    public void checkFirst() {
         onView(withText(R.string.app_header)).check(matches(isDisplayed()));
     }
+
+    @Test
+    public void checkFirstSecond() {
+        onView(withId(R.id.text_input_thing)).perform(typeText("Paris"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.deepButton)).perform(click());
+        onView(withText("Да")).perform(click());
+        onView(withId(R.id.city)).check(matches(withText("Paris")));
+    }
+
+    @Test
+    public void checkList() {
+        onView(withId(R.id.text_input_thing)).perform(typeText("Paris"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.deepButton)).perform(click());
+        onView(withText("Да")).perform(click());
+
+        onView(withContentDescription("Открыть панель навигации")).perform(click());
+        onView(withText("История погоды")).perform(click());
+        onView(withId(R.id.city)).check(matches(withText("Paris")));
+    }
 }
+
+
