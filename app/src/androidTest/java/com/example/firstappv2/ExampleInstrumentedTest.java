@@ -11,6 +11,7 @@ import androidx.test.rule.ActivityTestRule;
 import com.android21buttons.fragmenttestrule.FragmentTestRule;
 import com.example.firstappv2.fragments.main.MainFragment;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -56,8 +57,10 @@ public class ExampleInstrumentedTest {
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.deepButton)).perform(click());
         onView(withText("Да")).perform(click());
-
-        onView(withContentDescription("Открыть панель навигации")).perform(click());
+        onView(Matchers.anyOf(
+                    withContentDescription("Открыть панель навигации"),
+                    withContentDescription("Open navigation drawer")))
+                .perform(click());
         onView(withText("История погоды")).perform(click());
         onView(withId(R.id.city)).check(matches(withText("Paris")));
     }
