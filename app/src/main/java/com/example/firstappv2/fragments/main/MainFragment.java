@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -21,6 +22,7 @@ public class MainFragment extends Fragment{
     private Button deepButton;
     private com.google.android.material.textfield.TextInputLayout editTextMaterial;
     private EditText editText;
+
     private ImageView sunImage;
     private ImageView nightImage;
 
@@ -31,11 +33,11 @@ public class MainFragment extends Fragment{
 
         NavMainActivity.weatherFragment = new WeatherFragment();
 
-
         mainPresentor = new MainFragmentPresentor(this);
         editTextMaterial = root.findViewById(R.id.nomen);
         editText = editTextMaterial.getEditText();
         deepButton = root.findViewById(R.id.deepButton);
+
         sunImage = root.findViewById(R.id.sun_anim);
         nightImage = root.findViewById(R.id.night_anim);
 
