@@ -101,6 +101,26 @@
             app:layout_constraintTop_toBottomOf="@+id/topText"
             app:srcCompat="@drawable/ic_location_city_24px" />
 
+        <ImageView
+            android:id="@+id/sun_anim"
+            android:layout_width="96dp"
+            android:layout_height="87dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="27dp"
+            android:src="@drawable/ic_wb_sunny_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/night_anim"
+            android:layout_width="96dp"
+            android:layout_height="87dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_nights_stay_24px"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+      
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
